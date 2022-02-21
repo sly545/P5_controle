@@ -56,6 +56,7 @@ const fetchkanap = () => {
         const descrpit = item.description;
         const visuel = item.imageUrl;
         const items  = document.getElementById("items");
+        const lienpageproduit = "./product.html";
 
         
          
@@ -72,10 +73,12 @@ const fetchkanap = () => {
         //console.log(newlien,neawarticle,images,paragraphe,namekanap);
         namekanap.classList.add("productName");
         paragraphe.classList.add("productDescription");
+
         paragraphe.textContent = descrpit;
         namekanap.textContent = name;
         images.textContent = visuel;
-        newlien.setAttribute("href",visuel);
+
+        newlien.setAttribute("href",lienpageproduit);
         newlien.setAttribute("id",identifient)
         images.setAttribute("src",visuel);
         images.setAttribute("alt",desriptifkanap);
