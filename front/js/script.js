@@ -1,8 +1,7 @@
 const fetchkanap = () => {
-
   // On effectue un call à une API
   // => On envoie une requete à une API pour lui demander des informations
-  fetch ("http://localhost:3000/api/products") // On déclenche la requete sur l'URL suivante (= endpoint => là où notre API nous délivre des données)
+  fetch("http://localhost:3000/api/products") // On déclenche la requete sur l'URL suivante (= endpoint => là où notre API nous délivre des données)
     .then(function (responseJSON) {
       // Ici, une fois que la requete est effectuée
       // On reçoit dans ce bloc then, là réponse de l'API au format JSON
@@ -14,86 +13,50 @@ const fetchkanap = () => {
         return responseJSON.json();
       }
     })
-    .then(function(dataFromAPI){
-      
-      
-       console.log(dataFromAPI);
-
-      
-      dataFromAPI.forEach(function(item) {
-
-        // On crée une variable dans laquelle on place la nom du canapé courant
+    .then(function (dataFromAPI) {
+      console.log(dataFromAPI);
+      //boucle sur l'api  
+      dataFromAPI.forEach(function (item) {
+        //const
         const name = item.name;
         const identifient = item._id;
         const desriptifkanap = item.altTxt;
         const descrpit = item.description;
         const visuel = item.imageUrl;
-        const items  = document.getElementById("items");
-        let parmams = new URL (document.location).searchParams;
-        let id = parmams.get("42")
-        console.log(id);
-        
-        
+        const items = document.getElementById("items");
 
-        
-         
-        
+        //variable
 
-        // Prendre l'habitude de vérifier nos données
         //console.log(name,identifient,desriptifkanap,descrpit,visuel);
-        const newlien = document.createElement("a");
-        const neawarticle  = document.createElement("article");
-        const namekanap = document.createElement("h3");
-        const images = document.createElement("img");
-        const paragraphe = document.createElement("p");
+        //creation des elements du dom
+        let newlien = document.createElement("a");
+        let neawarticle = document.createElement("article");
+        let namekanap = document.createElement("h3");
+        let images = document.createElement("img");
+        let paragraphe = document.createElement("p");
         let lienpageproduit = "./product.html";
 
-
-        
-        
-        
         //console.log(newlien,neawarticle,images,paragraphe,namekanap);
-        
+        //ajout des class
         namekanap.classList.add("productName");
         paragraphe.classList.add("productDescription");
-
+        //ajout du texte
         paragraphe.textContent = descrpit;
         namekanap.textContent = name;
         images.textContent = visuel;
-
-        newlien.setAttribute("href",lienpageproduit);
-        newlien.setAttribute("id",identifient);
-        images.setAttribute("src",visuel);
-        images.setAttribute("alt",desriptifkanap);
-        
-        
-
-        
-       
-
-        
-
-        
-        
-
-       
+        //ajout des atributs
+        newlien.setAttribute("href", lienpageproduit);
+        newlien.setAttribute("id", identifient);
+        images.setAttribute("src", visuel);
+        images.setAttribute("alt", desriptifkanap);
+        //indentation de la structur html
         items.appendChild(newlien);
         newlien.appendChild(neawarticle);
         neawarticle.appendChild(images);
         neawarticle.appendChild(namekanap);
         neawarticle.appendChild(paragraphe);
-
-
-       
-        
-        
-        
-        
-
-         
       });
     });
-}
+};
 
 fetchkanap();
-
