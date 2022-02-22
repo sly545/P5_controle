@@ -34,7 +34,14 @@ const fetchkanap = () => {
         let namekanap = document.createElement("h3");
         let images = document.createElement("img");
         let paragraphe = document.createElement("p");
-        let lienpageproduit = "./product.html";
+        //let lienpageproduit = "./product.html?";
+        let joined = `./product.html?ID=${identifient}`;
+        
+
+        
+        
+        
+        
 
         //console.log(newlien,neawarticle,images,paragraphe,namekanap);
         //ajout des class
@@ -45,7 +52,7 @@ const fetchkanap = () => {
         namekanap.textContent = name;
         images.textContent = visuel;
         //ajout des atributs
-        newlien.setAttribute("href", lienpageproduit);
+        newlien.setAttribute("href",joined);
         newlien.setAttribute("id", identifient);
         images.setAttribute("src", visuel);
         images.setAttribute("alt", desriptifkanap);
