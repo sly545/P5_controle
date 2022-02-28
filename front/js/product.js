@@ -17,12 +17,15 @@ function fetchkanap() {
       const prix = dataFromAPI.price;
       //sellecteure d'element
       const ajoutpanier = document.getElementById("addToCart");
-      let Idform =document.getElementById("quantity");
+      const Idform =document.getElementById("quantity");
       const choiceColors =document.getElementById("colors");
+     
+     
+ 
+
       //choix des quantier 
       
       //selection du bouton pour que cette valeur se dimette dans la bonnne variable
-      
       
       
 
@@ -34,9 +37,9 @@ function fetchkanap() {
       let colorsK  =dataFromAPI.colors;
       let tabscolors = [];
       tabscolors = colorsK;
+      
       //boucle pour les couleurs
       tabscolors.forEach(items => {
-
       const evrycolors = items;
       //console.log(evrycolors);
       //console.log(selectioncolor);
@@ -50,58 +53,54 @@ function fetchkanap() {
       price.textContent = prix;
       balisephoto.appendChild(images);
       selectioncolor.appendChild(option);
+     
       
+     
       
     });
+   
     //Fonction qui va écouter le clic pour récupérer les différences informations sur la quantité 
     //le nom du produit et la couleur.
     
-    
+   
    
 
-    
-    
-
-    Idform.addEventListener("click", () => {
+      Idform.addEventListener("click", () => {
       ajoutpanier.addEventListener('click',handleAddToCart);
-    
-    
-    
       optionProduit = [namekanap,ID,choiceColors.value,Idform.value,prix]
-      
      
-    
-   
-    
-    
-    function handleAddToCart() {
-      //console.log('Click sur ajout au panier');
+      
+      function handleAddToCart() {
+
       console.log(optionProduit);
-      
-     
+
+      optionProduit = [namekanap,ID,choiceColors.value,Idform.value,prix];
     
       // Recup les valeurs qu'il faut
       // Les mettre dans un tableau 
       // Et "sauvegarder" le tableau dans le local storage
     }
+    choiceColors.addEventListener("click",()=> {
+      console.log(choiceColors.value);
+      optionProduit = [namekanap,ID,choiceColors.value,Idform.value,prix];
+     
+      
+      console.log(optionProduit);
+
+      
+     
+    });
     
-
-
-    
-
-  });
+   
+  })
   
-      
-
-  });
-      
-};
  
-
+  
+  });
+};
 //Fonction qui va écouter le clic pour récupérer les différences informations sur la quantité 
 //le nom du produit et la couleur.
-
-
+console.log(localStorage);
 
 function convertJSON(responseJSON) {
   // verif si la reponse est ok
@@ -112,7 +111,15 @@ function convertJSON(responseJSON) {
     return responseJSON.json();
   }
 }
-  
 
+
+
+console.log(localStorage);
 // Appel à la fonction
 fetchkanap();
+
+let produitEnregisterDansLelocalStorage = JSON.parse(localStorage.getItem("1"))
+console.log(produitEnregisterDansLelocalStorage);
+if (produitEnregisterDansLelocalStorage){       
+  
+}
