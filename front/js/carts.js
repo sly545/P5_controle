@@ -3,7 +3,7 @@ console.log(produitEnregistrerDansLocalStorage);
 
 
 produitEnregistrerDansLocalStorage.forEach(items => {
-    //constent recuperer ddu ou des canape du local storage.
+    //constent recuperer du ou des canape du local storage.
     const name = items.name;
     const prix = items.prix;
     const couleur = items.colors;
@@ -14,12 +14,17 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     const number = "number";
     const min = "1";
     const max = "100";
-    const value ="42";
-    const apelPapa = document.getElementById("cart__items");
-    console.log(apelPapa);
+    const value ="";
+    const apelParents = document.getElementById("cart__items");
+    const totalPrix = prix*quantiter;
+    //console.log(apelParents);
+    //console.log(visuelKanap);
+    
+    
+
 
     //console.log(name,prix,quantiter,couleur,ID,visuelKanap,descrptionPhoto);
-
+     // creation des diferrent element html de la pages.
     let identificationKanpCouleurKanap = document.createElement("article");
     identificationKanpCouleurKanap.classList.add("cart__item");
     identificationKanpCouleurKanap.setAttribute("data-id",ID);
@@ -38,12 +43,13 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     let couleureSelection = document.createElement("p")
     couleureSelection.textContent=couleur;
     let prixKanapSelction = document.createElement("p")
-    prixKanapSelction.textContent= prix;
+    prixKanapSelction.textContent= totalPrix;
     let divcontenerSeting = document.createElement("div")
     divcontenerSeting.classList.add("cart__item__content__settings")
     let divcontenersetingQantity = document.createElement("div")
     divcontenersetingQantity.classList.add("cart__item__content__settings__quantity")
     let quantytiSelctect = document.createElement("p")
+    console.log(quantytiSelctect);
     quantytiSelctect.textContent=quantiter;
     let inuputchange =document.createElement("input");
     inuputchange.classList.add("itemQuantity");
@@ -51,68 +57,97 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     inuputchange.setAttribute("name",name);
     inuputchange.setAttribute("min",min)
     inuputchange.setAttribute("max",max)
-    inuputchange.setAttribute("value",value)
+    inuputchange.setAttribute("value",quantiter)
     let divContenersupretion = document.createElement("div");
     divContenersupretion.classList.add("cart__item__content__settings__delete");
     let divsupretion = document.createElement("p")
     divsupretion.classList.add("deleteItem");
     divsupretion.textContent="Supprimer";
+
+
+
+
+    //structure html de la partit ajout client Kanape
+    apelParents.appendChild(identificationKanpCouleurKanap);
+    identificationKanpCouleurKanap.appendChild(divcontenerImage);
+    identificationKanpCouleurKanap.appendChild(contenereferenceProdutit);
+    contenereferenceProdutit.appendChild(referenceProduit);
+    identificationKanpCouleurKanap.appendChild(divcontenerSeting);
+    identificationKanpCouleurKanap.appendChild(divContenersupretion);
+    divcontenerImage.appendChild(images);
+    contenereferenceProdutit.appendChild(nomKananSelection);
+    contenereferenceProdutit.appendChild(couleureSelection);
+    contenereferenceProdutit.appendChild(prixKanapSelction);
+    divcontenerSeting.appendChild(divcontenersetingQantity);
+    divcontenerSeting.appendChild(divContenersupretion);
+    divContenersupretion.appendChild(divsupretion);
+    divcontenersetingQantity.appendChild(quantytiSelctect);
+    divcontenersetingQantity.appendChild(inuputchange);
+   
+ 
+    
+    
     
 
 
-
-  
+    
+     
 
 
 
     
+    //--------------------------------------------------------//
+     //evenement au click pour suprimer //    
+   
+    divsupretion.addEventListener("click",() =>{
+       console.log(name,ID,couleur,quantiter,);
+       //filter le local  ID diferete de l'emment condition inversse//
 
+       
+     
+        
+        
+});
     
-
-
-    
-    
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 });
 
-/*  <article class="cart__item" data-id="{product-ID}" data-color="{product-color}">
-                <div class="cart__item__img">
-                  <img src="../images/product01.jpg" alt="Photographie d'un canapé">
-                </div>
-                <div class="cart__item__content">
-                  <div class="cart__item__content__description">
-                    <h2>Nom du produit</h2>
-                    <p>Vert</p>
-                    <p>42,00 €</p>
-                  </div>
-                  <div class="cart__item__content__settings">
-                    <div class="cart__item__content__settings__quantity">
-                      <p>Qté : </p>
-                      <input type="number" class="itemQuantity" name="itemQuantity" min="1" max="100" value="42">
-                    </div>
-                    <div class="cart__item__content__settings__delete">
-                      <p class="deleteItem">Supprimer</p>
-                    </div>
-                  </div>
-                </div>
-              </article> --></div>*/
+
+
+
+
+
+
+    
+
+    
+
+    
+
+
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     
 
