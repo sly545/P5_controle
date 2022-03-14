@@ -1,24 +1,49 @@
 let produitEnregistrerDansLocalStorage = JSON.parse(localStorage.getItem("produit"));
 console.log(produitEnregistrerDansLocalStorage);
 
+let pricomande = 0;
+let totalQty = 0;
+produitEnregistrerDansLocalStorage.forEach((items) => {
+  pricomande = pricomande + (items.quantity * items.prix);
+  totalQty += items.quantity;
+})
+//console.log(pricomande);
+//console.log(totalQty);
+
+
+
+
+
 
 produitEnregistrerDansLocalStorage.forEach(items => {
     //constent recuperer du ou des canape du local storage.
     const name = items.name;
-    const prix = items.prix;
+    let prix = items.prix;
     const couleur = items.colors;
-    const quantiter= items.quantity;
+    let quantiter= items.quantity;
     const ID = items.identification;
     const visuelKanap = items.imageduKanap;
     const descrptionPhoto = items.descrptionPhoto;
     const number = "number";
     const min = "1";
     const max = "100";
-    const value ="";
     const apelParents = document.getElementById("cart__items");
-    const totalPrix = prix*quantiter;
-    //console.log(apelParents);
-    //console.log(visuelKanap);
+    const contenerprixcommande =document.getElementById("totalPrice")
+    const prixmultiple = prix*quantiter;
+    //tableaux avec toute les data pas utile pour l'instant
+    let tabletous = [name,couleur,prix,visuelKanap,descrptionPhoto,ID,quantiter];
+
+    console.log(items.quantity);
+  
+    
+   //tentative boucle sure total-prix
+   
+
+
+  
+ //console.log(prixComande);
+ //console.log(apelParents);
+ //console.log(visuelKanap);
     
     
 
@@ -42,14 +67,13 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     nomKananSelection.textContent=name;
     let couleureSelection = document.createElement("p")
     couleureSelection.textContent=couleur;
-    let prixKanapSelction = document.createElement("p")
-    prixKanapSelction.textContent= totalPrix;
+    let prixKanapSelction = document.createElement("p")   
+    prixKanapSelction.textContent= prixmultiple;
     let divcontenerSeting = document.createElement("div")
     divcontenerSeting.classList.add("cart__item__content__settings")
     let divcontenersetingQantity = document.createElement("div")
     divcontenersetingQantity.classList.add("cart__item__content__settings__quantity")
     let quantytiSelctect = document.createElement("p")
-    console.log(quantytiSelctect);
     quantytiSelctect.textContent=quantiter;
     let inuputchange =document.createElement("input");
     inuputchange.classList.add("itemQuantity");
@@ -63,9 +87,17 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     let divsupretion = document.createElement("p")
     divsupretion.classList.add("deleteItem");
     divsupretion.textContent="Supprimer";
+    contenerprixcommande.textContent=pricomande;
+    
+  
 
 
+    
+    
 
+ 
+
+   
 
     //structure html de la partit ajout client Kanape
     apelParents.appendChild(identificationKanpCouleurKanap);
@@ -84,61 +116,82 @@ produitEnregistrerDansLocalStorage.forEach(items => {
     divcontenersetingQantity.appendChild(quantytiSelctect);
     divcontenersetingQantity.appendChild(inuputchange);
    
- 
+   
     
-    
-    
+
+//aditioner
+        
+//evenemnt changement de quantiter.
+   
+             inuputchange.addEventListener("change",() =>{
+               console.log(inuputchange.value);
+               //ils faut trouver le produit j'uste le produit cliquer:
+               let produitTrouve = produitEnregistrerDansLocalStorage.find(el => el ) 
+              
+              
+              let quaniterAmodifer = [inuputchange.value ]  
+               console.log(quaniterAmodifer);
+               
+            
+
+             
+              produitTrouve.quantity = inuputchange.value;
+              //console.log(produitTrouve);
+
+           
+              
+              localStorage.setItem(
+                "produit",
+                JSON.stringify(produitEnregistrerDansLocalStorage)
+              );
+              window.location.href= "cart.html"
+              
+         })
 
 
     
-     
-
 
 
     
     //--------------------------------------------------------//
      //evenement au click pour suprimer //    
    
-    divsupretion.addEventListener("click",() =>{
-       console.log(name,ID,couleur,quantiter,);
-       //filter le local  ID diferete de l'emment condition inversse//
 
-       
+
+
+     divsupretion.addEventListener("click",() =>{
+      
+      let grandesuppresion = produitEnregistrerDansLocalStorage.find(quantity => quantity = quantity);
+      //console.log(grandesuppresion);
+
+
+    let produitAsuprimer = grandesuppresion;
+      //obejectif reussir a selcetion seul le kanape choisit ou selvtioner tous les autre kanap selectioner 
+  
+     console.log(produitAsuprimer);
+     //jenvois le produit dans le local Storage
+     grandesuppresion = produitEnregistrerDansLocalStorage.filter(el => el !== produitAsuprimer);
+     console.log(grandesuppresion);
      
-        
-        
+     localStorage.setItem(
+      "produit",
+      JSON.stringify(grandesuppresion)
+    );
+
+   
+    window.location.href= "cart.html"
+    
+  });
+    
+
+
+ 
+
+ 
+ 
 });
-    
 
-
-});
-
-
-
-
-
-
-
-    
-
-    
-
-    
-
-
-    
-    
-    
-
-    
-
-
-
-
-
-
-
-
+  
 
 
 
