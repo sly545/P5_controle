@@ -205,7 +205,7 @@ console.log(object);
     method: "POST",
     body: JSON.stringify("order"),
     headers: { "Content-Type": "application/json" },
-  });
+});
   
  
   object.then(async(response)=>{
@@ -249,6 +249,7 @@ console.log(object);
     } else {
       //console.log("ko");
       alert("champs invalide");
+      window.location.href= "cart.html"
     }
     
   }
@@ -262,6 +263,7 @@ console.log(object);
     } else {
       console.log("ko");
       alert("champs invalide");
+      window.location.href= "cart.html"
     }
     
   }
