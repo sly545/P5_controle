@@ -164,68 +164,59 @@ produitEnregistrerDansLocalStorage.forEach((items) => {
 
   order.addEventListener("click", (e) => {
     e.preventDefault(e);
+    //controle des champs
     prenonNonVilleControle();
     mailControle();
-    let prenomValid = firstName.value;
-    let nomValid = lastName.value;
-    let addressValid = address.value;
-    let villeValid = city.value;
-    let emailValid = email.value;
-    
    
-  //console.log(idProduct);
+    
+   const products = [
+    {
+      id: ID,
+      price: prix,
+      couleur : couleur,
+      nom : name,
   
-const products = [
-  {
-    id: ID,
-    price: prix,
-    couleur : couleur,
-    nom : name,
-    nombre: quantiter, 
- },
-];
-const idProduct = products.map(product => {
-  return product.id;
-});
-let object = {
-  contact: {
-    firstName: prenomValid,
-    lastName: nomValid,
-    address: addressValid,
-    city: villeValid,
-    email:emailValid,
-},
- "product-ID": [idProduct],
+   },
+  ];
+  const idProduct = products.map(product => {
+    return product.id;
+  });
 
+  const object = {
+    contact: {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      address: address.value,
+      city: city.value,
+      email:city.value,
+  },
+   products: idProduct,
+  
 };
-console.log(object);
 
-  
- object = fetch(`http://localhost:3000/api/products/users`,{
+ const options = fetch(`http://localhost:3000/api/products/order`, {
     method: "POST",
-    body: JSON.stringify("order"),
+    body: JSON.stringify(object),
     headers: { "Content-Type": "application/json" },
 });
-  
+  console.log(options);
  
-  object.then(async(response)=>{
+  options.then(async(response)=>{
     try{
+
       console.log("response");
       console.log(response);
 
-      const contenu = await response.json();
+      const contenu = await response.json(); window.location.href = `./confirmation.html?orderid=${contenu.orderId}`;
       console.log("contenu");
       console.log(contenu);
     }catch{
       console.log(e);
     }
   })
+  
+  
 
-  fetch('http://localhost:3000/api/products/users', object)
-  .then(response => response.json())
-  .then(data => {
-    window.location.href = `/confirmation.html?orderid=${data.orderId}`;
-  })
 
 
  
@@ -278,3 +269,6 @@ console.log(object);
 
 
 });
+
+
+
